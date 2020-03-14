@@ -157,7 +157,7 @@ if (completeButton) {
     handleFormSubmit(event);
   });
 }
-//if the addButton isn't disabled,
+//if the addButton isn't disabled, and on click it will update the database. This will NOT navigate you away from the page
 if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
