@@ -1,4 +1,5 @@
 const API = {
+  //this will grab all the workouts from the database and the end json.length-1 grabs the last database entry and return it to index.html
   async getLastWorkout() {
     let res;
     try {
