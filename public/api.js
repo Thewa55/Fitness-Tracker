@@ -10,6 +10,9 @@ const API = {
 
     return json[json.length - 1];
   },
+
+
+  //this will take the id from the html page and use that id to find which id to do a PUT call on to update.
   async addExercise(data) {
     const id = location.search.split("=")[1];
 
@@ -23,6 +26,8 @@ const API = {
 
     return json;
   },
+
+  //this does an express call to the api routes and does a POST creating a new workout in the database
   async createWorkout(data = {}) {
     const res = await fetch("/api/workouts", {
       method: "POST",

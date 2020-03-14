@@ -17,6 +17,8 @@ const newWorkout = document.querySelector(".new-workout")
 let workoutType = null;
 let shouldNavigateAway = false;
 
+
+//initExercise is the start up function, if the html of the browser is undefined, create a new workout using API.createWorkout(). Otherwise it will take the created workout.
 async function initExercise() {
   let workout;
 
@@ -32,6 +34,8 @@ async function initExercise() {
 
 initExercise();
 
+//this handles the type of form that shows up when you select cardio or resistance and calls he function validateInputs()
+//this function runs when the if(workoutTypeSelect) is activated by switch of the select.
 function handleWorkoutTypeChange(event) {
   workoutType = event.target.value;
 
@@ -49,6 +53,7 @@ function handleWorkoutTypeChange(event) {
   validateInputs();
 }
 
+//this function will validate if the inputs of the fields have something in them or not. If there is nothing in the fields the submit button is disabled.
 function validateInputs() {
   let isValid = true;
 
@@ -95,6 +100,8 @@ function validateInputs() {
   }
 }
 
+//this function runs when the add button is clicked. It takes the value of each input and inserts it into workoutData json as a key:value pair 
+//it then runs an API.addExercise(workoutData) to update the schema with the user input then it clears the inputs
 async function handleFormSubmit(event) {
   event.preventDefault();
 
@@ -119,6 +126,7 @@ async function handleFormSubmit(event) {
   toast.classList.add("success");
 }
 
+
 function handleToastAnimationEnd() {
   toast.removeAttribute("class");
   if (shouldNavigateAway) {
@@ -137,15 +145,19 @@ function clearInputs() {
   weightInput.value = "";
 }
 
+//this activates when the "User" changes between the options in the select bar
 if (workoutTypeSelect) {
   workoutTypeSelect.addEventListener("change", handleWorkoutTypeChange);
 }
+
+//if the completeButton isn't disabled, and on click the form will get submitted to get updated. Afterwards the user will get routed to the main page
 if (completeButton) {
   completeButton.addEventListener("click", function (event) {
     shouldNavigateAway = true;
     handleFormSubmit(event);
   });
 }
+//if the addButton isn't disabled,
 if (addButton) {
   addButton.addEventListener("click", handleFormSubmit);
 }
