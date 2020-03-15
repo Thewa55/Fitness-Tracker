@@ -8,7 +8,6 @@ const API = {
       console.log(err)
     }
     const json = await res.json();
-
     return json[json.length - 1];
   },
 
@@ -45,7 +44,7 @@ const API = {
   async getWorkoutsInRange() {
     const res = await fetch(`/api/workouts/range`);
     const json = await res.json();
-    
+
     return json;
   },
 };
