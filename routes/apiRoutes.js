@@ -50,10 +50,13 @@ router.get("/api/workouts/range", (req,res) => {
     });
 });
 
-router.put("/api/workouts/:id", ({body}, res)=>{
-  Workout.insertMany([
-    {_id: body.params.id, exercises: body}
-    ])
+router.put("/api/workouts/:id", (req, res)=>{
+  console.log(req.params.id)
+  console.log(req.body)
+  let exercises = {exercises: req.body}
+  Workout.update(
+    {_id: req.params.id}, exercises
+    )
     .then(dbWorkout =>{
       res.json(dbWorkout);
     })
