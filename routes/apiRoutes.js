@@ -66,15 +66,10 @@ module.exports = function(app){
       res.json(dbWorkout);
     });
   });
-  // router.post("/api/workouts/:id", ({body}, res)=>{
-//   Workout.insertMany([
-//     {id: body.id, exercises: body}
-//     ])
-//     .then(dbWorkout =>{
-//       res.json(dbWorkout);
-//     })
-//     .catch(err =>{
-//       res.status(400).json(err);
-//     });
-// });
+
+  app.post("/api/workouts", function (req, res){
+    db.Workout.insertOne().then(function(dbWorkout) {
+      res.json(dbWorkout)
+    })
+  })
 }
