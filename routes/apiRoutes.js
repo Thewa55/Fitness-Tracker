@@ -53,15 +53,18 @@ router.get("/api/workouts/range", (req,res) => {
 router.put("/api/workouts/:id", (req, res)=>{
   console.log(req.params.id)
   console.log(req.body)
-  db.Exercises.create(req.body)
-    .then(({_id}) => db.Workout.findOneAndUpdate({_id: req.params.id}, {$push: {Exercises: _id}}, {new: true}))
-    .then(dbWorkout => {
-      console.log(dbWorkout)
-      res.json(dbWorkout)
-    })
-    .catch(err =>{
-      res.json(err);
-    })
+  db.Workout.findOneAndUpdate({_id: req.params.id}, req.body, function(err, dbWorkout){
+    res.json(dbWorkout)
+  })
+  // db.Exercises.upda(req.body)
+  //   .then(({_id}) => db.Workout.findOneAndUpdate({_id: req.params.id}, {$push: {Exercises: _id}}, {new: true}))
+  //   .then(dbWorkout => {
+  //     console.log(dbWorkout)
+  //     res.json(dbWorkout)
+  //   })
+  //   .catch(err =>{
+  //     res.json(err);
+  //   })
 });
 
 router.post("/api/workouts", ({body}, res)=>{
